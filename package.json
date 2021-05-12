@@ -18,6 +18,8 @@
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3",
     "nuxt-i18n": "^6.27.0",
+    "vue-fb-customer-chat": "^0.2.0",
+    "vue-stripe-menu": "^2.0.0",
     "vuesax": "^4.0.1-alpha.25",
     "webpack": "^4.46.0"
   },

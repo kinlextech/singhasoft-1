@@ -3,7 +3,7 @@ export default {
   head: {
     title: 'singhasoft',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'lo'
     },
     meta: [
       { charset: 'utf-8' },
@@ -23,7 +23,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/vuesax'
+    '@/plugins/vuesax',
+    { src: '~/plugins/fbcustomer.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -1,157 +1,240 @@
 <template>
-  <div class="container">
-    <div>
-      <header class="content-logos">
-        <logo />
-        <span class="plus">+</span>
-        <VuesaxLogo />
-      </header>
-      <h1 class="title">
-        Nuxt.js + Vuesax
-      </h1>
-      <h2 class="subtitle">
-        <a href="https://vuesax.com/">Vuesax</a> is a framework of ui components for <a href="https://vuejs.org/">Vuejs</a>, It was created to make new interfaces that have a new trend and are visually beautiful
-      </h2>
-      <div class="links">
-        <h3 class="h3">
-          Vuesax
-        </h3>
-        <a
-          href="https://vuesax.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://discordapp.com/invite/9dsKtvB"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          Discord
-        </a>
-        <a
-          href="https://github.com/lusaxweb/vuesax"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-      <div class="links">
-        <h3 class="h3">
-          Nuxt.js
-        </h3>
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+  <article>
+    <nuxt-content :document="page" />
+  </article>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuesaxLogo from '~/components/VuesaxLogo.vue'
-
 export default {
-  components: {
-    Logo,
-    VuesaxLogo
+  layout: 'client',
+  async asyncData ({ $content }) {
+    const page = await $content('lo/home').fetch()
+    return {
+      page
+    }
+  },
+  head () {
+    return {
+      title: this.page.title,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'My custom description'
+        }
+      ]
+    }
   }
 }
 </script>
-
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.bg-header {
+  width: 100%;
+  height: 100vh;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+[data-size='large-font'] {
+  font-size: 41px;
+}
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: ripple 15s infinite;
+  box-shadow: 0px 0px 1px 0px #508fb9;
+}
+
+.small {
+  width: 200px;
+  height: 200px;
+  left: -100px;
+  bottom: -100px;
+}
+
+.medium {
+  width: 400px;
+  height: 400px;
+  left: -200px;
+  bottom: -200px;
+}
+
+.large {
+  width: 600px;
+  height: 600px;
+  left: -300px;
+  bottom: -300px;
+}
+
+.xlarge {
+  width: 800px;
+  height: 800px;
+  left: -400px;
+  bottom: -400px;
+}
+
+.xxlarge {
+  width: 1000px;
+  height: 1000px;
+  left: -500px;
+  bottom: -500px;
+}
+
+.shade1 {
+  opacity: 0.2;
+}
+.shade2 {
+  opacity: 0.5;
+}
+
+.shade3 {
+  opacity: 0.7;
+}
+
+.shade4 {
+  opacity: 0.8;
+}
+
+.shade5 {
+  opacity: 0.9;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(0.8);
+  }
+}
+.background {
+  background: linear-gradient(132deg, #FC415A, #591BC5, #212335);
+  background-size: 400% 400%;
+  animation: Gradient 15s ease infinite;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  padding:0;
+  margin:0px;
+}
+
+/* ================= Header ============ */
+header{
+  position: absolute;
+  top:0%;
+  left: 0%;
+  width:100%;
+  margin: 0;
+  padding: 0;
+}
+/* navbar */
+nav{
+  color: #FFF;
+  float: right;
+  margin:30px 90px;
+}
+nav ul{
+  list-style: none;
+}
+nav ul li {
+  float: left;
+  transition: .3s;
+}
+nav ul li a{
+  text-decoration: none;
+  color: #EFEEF5;
+  transition: .5;
+  font-size: 15px;
+  margin-left:16px;
+}
+nav ul li:hover a{
+  text-decoration: none;
+  color: #591BC5;;
+}
+nav ul li:hover{
+  height: 45px;
+  padding-top: 30px;
+  margin-top: -30px;
+ background: #EFEEF5;
+  text-decoration: none;
+  transform: skew(15deg);
+}
+/* Logo */
+.logo{
+  width: 35px;
+  height: 35px;
+  background: #EFEEF5;
+  margin: 40px 63px;
+  float: left;
+  transform: rotate(-30deg);
+}
+.logo span{
+  color: #591BC5;
+  font-size: 2em;
+  line-height: 1.4;
+  padding-left: 5px;
+  font-weight: bold;
+}
+/* Header content & title & button*/
+.header-content{
+  margin-top:25%;
   text-align: center;
+  color:  #EFEEF5;
 }
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 55px;
-  color: #35495e;
+.header-content h1{
+  text-transform: uppercase;
+  font-size: 3em;
   letter-spacing: 1px;
-  text-transform: capitalize;
-  margin: 25px 0;
 }
-
-.subtitle {
-  font-weight: 300;
-  font-size: 1.1rem;
-  color: #526488;
-  word-spacing: 2px;
-  padding-bottom: 15px;
-  max-width: 600px;
+.header-content p {
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 20px auto;
 }
-
-.subtitle a {
+.header-content button{
+  width: 140px;
+  margin:20px 10px;
+  color: #591BC5;
+  font-size: 17px;
+  border:1px solid #EFEEF5;
   font-weight: 500;
-  color: inherit;
+  background: #EFEEF5;
+  border-radius: 20px;
+  padding: 10px;
+  cursor:pointer;
+  transition: .3s;
 }
-
-.links {
-  padding-top: 15px;
-  margin-bottom: 20px;
+.header-content button:hover{
+  border-radius: 0;
 }
-
-.content-logos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 500px;
+/* Animate Background*/
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
-
-.plus {
-  font-size: 2.5rem;
-  margin: 15px;
-  color: #35495e;
-}
-
-.h3 {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-weight: 400;
-  margin: 10px;
+@keyframes cube {
+  from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
 }
 </style>

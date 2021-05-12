@@ -16,7 +16,7 @@
 export default {
   layout: 'client',
   async asyncData ({ $content }) {
-    const page = await $content('lo/about').fetch()
+    const page = await $content('lo/service').fetch()
 
     return {
       page
